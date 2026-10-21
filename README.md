@@ -1,16 +1,49 @@
-# React + Vite
+# 🏫 Website Resmi SMP Digital Edupage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repositori ini berisi kode sumber (*source code*) untuk frontend website profil resmi institusi pendidikan dengan desain modern, minimalis monokrom, serta siap diintegrasikan dengan backend CMS (seperti Supabase).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack yang Digunakan
 
-## React Compiler
+Proyek ini dibangun menggunakan teknologi web modern berkinerja tinggi:
+* **Library Utama:** React.js (Vite)
+* **Styling / Desain:** Tailwind CSS (dengan estetika minimalis monokrom)
+* **Icon Set:** Lucide React
+* **Manajemen State:** React Hooks (`useState`, `useEffect`)
+* **Simulasi Data:** *Dummy Data* terstruktur (siap diganti dengan *fetch* API database/CMS)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Fitur Utama Saat Ini
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Navbar Interaktif & Responsif:** Dilengkapi slot logo kustom, informasi kontak cepat, menu navigasi *mobile-friendly*, serta *notch* tanggal *realtime*.
+* **Halaman Beranda (Home):** Sambutan utama, informasi SPMB, dan keunggulan institusi.
+* **Profil Sekolah:** Tabulasi informasi lengkap mencakup Sejarah, Identitas Resmi & Alamat (format tabel rapi), Visi & Misi, serta Bagan Struktur Organisasi.
+* **Direktori Guru & Staf:** Daftar pengajar dan tenaga kependidikan lengkap dengan sistem filter kategori.
+* **Fasilitas & Denah Sekolah:** Peta denah interaktif dan galeri fasilitas (Akademik, Olahraga, Umum) berasio 16:9.
+* **Portal & Detail Ekstrakurikuler (Mini-Blog):** Etalase kegiatan ekskul lengkap dengan informasi pembina, jadwal latihan, dan arsip galeri kegiatan terbaru.
+* **Berita & Pengumuman:** Pusat publikasi artikel, pengumuman, dan prestasi dengan fitur filter kategori.
+* **Detail Berita (Single Post):** Halaman baca berita lengkap dengan galeri dokumentasi foto, *embed* video/tautan terkait, serta tombol bagikan ke WhatsApp & Salin Tautan.
+* **Galeri Prestasi (*Hall of Fame*):** Etalase penghargaan tingkat Internasional, Nasional, Provinsi, Kabupaten/Kota, hingga tingkat *Classmeet* dengan *Dual Filter* (Kategori & Tingkat).
+* **Halaman Kontak:** Informasi alamat resmi, jam operasional, *embed* Google Maps, serta tombol CTA cepat **"Hubungi Humas via WhatsApp"**.
+
+---
+
+## 🔮 Coming Soon (Rencana Pengembangan Berikutnya)
+
+* [ ] Integrasi penuh dengan Backend CMS (Supabase) untuk manajemen *database* dinamis.
+* [ ] Pembuatan Dashboard Admin / CMS Panel untuk CRUD Berita, Guru, dan Galeri tanpa menyentuh kode.
+* [ ] Penambahan fitur pencarian global (*Global Search*) untuk artikel dan direktori guru.
+* [ ] Optimalisasi mode *Dark Mode* lanjutan.
+
+---
+
+## 📞 Kontak & Informasi Pengembang
+
+* **Email:** [Masukkan Email Anda di Sini]
+* **GitHub:** [Masukkan Link GitHub Anda di Sini]
+* **WhatsApp Humas:** [Masukkan Nomor WhatsApp Resmi di Sini]
+
+---
+*© 2026 SMP Digital Edupage. All rights reserved.*
