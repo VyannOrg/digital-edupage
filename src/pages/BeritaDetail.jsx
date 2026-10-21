@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Calendar, User, Tag, Image as ImageIcon, Camera, Link as LinkIcon, PlayCircle } from 'lucide-react';
 
 export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (SIAP UNTUK BACKEND CMS)
-  // ---------------------------------------------------------
   const [isLoading, setIsLoading] = useState(true);
   const [berita, setBerita] = useState(null);
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchDetailBerita = async () => {
       setIsLoading(true);
@@ -21,7 +15,7 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
         kategori: 'Kegiatan',
         tanggal: '02 Mei 2026',
         penulis: 'Tim Jurnalis Sekolah',
-        bannerUrl: '', // KOSONG - Placeholder
+        bannerUrl: '',
         konten: `
           <p>Upacara bendera dalam rangka memperingati Hari Pendidikan Nasional (Hardiknas) 2026 di SMP Digital Edupage berlangsung dengan khidmat dan meriah. Acara yang dimulai pada pukul 07.00 WIB ini diikuti oleh seluruh jajaran dewan guru, staf tata usaha, serta seluruh siswa dari kelas VII hingga kelas IX.</p>
           <br/>
@@ -48,9 +42,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
     fetchDetailBerita();
   }, [beritaId]);
 
-  // ---------------------------------------------------------
-  // 3. UI COMPONENTS
-  // ---------------------------------------------------------
   if (isLoading || !berita) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-wf-white text-wf-darkest">
@@ -59,13 +50,9 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
     );
   }
 
-  // Padding-top diubah menjadi pt-36 md:pt-40 agar turun ke area aman
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 pt-36 md:pt-40 pb-20 space-y-10 bg-wf-white text-wf-darkest">
       
-      {/* =========================================
-          TOMBOL KEMBALI
-      ========================================= */}
       <div className="flex items-center animate-in fade-in slide-in-from-left-4 duration-500">
         <button 
           onClick={() => setActivePage('berita')}
@@ -76,9 +63,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
         </button>
       </div>
 
-      {/* =========================================
-          KONTEN ARTIKEL UTAMA
-      ========================================= */}
       <div className="max-w-4xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
         
         {/* HEADER ARTIKEL */}
@@ -104,7 +88,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
           </div>
         </div>
 
-        {/* GAMBAR BANNER / COVER ARTIKEL */}
         <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-wf-dark rounded-3xl overflow-hidden relative border border-wf-medium/30 shadow-sm">
           {berita.bannerUrl ? (
             <img 
@@ -122,7 +105,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
           )}
         </div>
 
-        {/* BODY TEKS ARTIKEL */}
         <div className="bg-wf-light p-6 md:p-10 rounded-[32px] border border-wf-medium/30 shadow-xs">
           <div 
             className="prose prose-sm md:prose-base max-w-none text-wf-dark text-justify leading-loose
@@ -132,9 +114,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
           />
         </div>
 
-        {/* =========================================
-            SECTION: TAUTAN VIDEO / KONTEN LUAR
-        ========================================= */}
         <div className="bg-wf-light p-6 rounded-[32px] border border-wf-medium/30 shadow-xs space-y-4">
           <div className="flex items-center gap-2 pb-2 border-b border-wf-medium/20">
             <LinkIcon className="text-wf-blue" size={20} />
@@ -158,9 +137,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
           </div>
         </div>
 
-        {/* =========================================
-            SECTION: GALERI DOKUMENTASI
-        ========================================= */}
         {berita.galeriDokumentasi && berita.galeriDokumentasi.length > 0 && (
           <div className="bg-wf-light p-6 md:p-8 rounded-[32px] border border-wf-medium/30 shadow-xs space-y-6">
             <div className="flex items-center gap-2 pb-2 border-b border-wf-medium/20">
@@ -196,9 +172,6 @@ export default function BeritaDetail({ setActivePage, beritaId = 'berita-1' }) {
           </div>
         )}
 
-        {/* =========================================
-            BAGIKAN ARTIKEL
-        ========================================= */}
         <div className="pt-6 border-t border-wf-medium/20 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-sm font-bold text-wf-darkest">Bagikan artikel ini:</span>
           

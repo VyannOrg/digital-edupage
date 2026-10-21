@@ -6,7 +6,6 @@ import kepsek from '../images/placeholder-kepalasekolah.png';
 import berita from '../images/placeholder-berita.png';
 
 export default function Home({ setActivePage }) {
-  // 1. STATE LOGIC UNTUK HERO BANNER DINAMIS
   const [heroBanner, setHeroBanner] = useState({
     badge: '-',
     title: '-',
@@ -14,7 +13,6 @@ export default function Home({ setActivePage }) {
     imageUrl: bannerFoto,
   });
 
-  // 2. STATE LOGIC UNTUK CAROUSEL SLIDER
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
   const [slides, setSlides] = useState(schoolData.heroSlides || []);
@@ -47,11 +45,9 @@ export default function Home({ setActivePage }) {
   return (
     <div className="space-y-20 pb-20 bg-wf-white text-wf-darkest">
       
-      {/* ---------------- SECTION 1: HERO BANNER ---------------- */}
         <section className="relative bg-wf-darkest text-wf-white w-full -mt-32 pt-32">
             <div className="relative w-full h-[520px] pb-36 pt-12 px-6 lg:px-12 flex items-end overflow-hidden">
                 
-                {/* FOTO BANNER (Opacity dinaikkan ke 60% & hapus mix-blend-overlay) */}
                 {heroBanner.imageUrl && (
                 <img 
                     src={heroBanner.imageUrl} 
@@ -60,11 +56,9 @@ export default function Home({ setActivePage }) {
                 />
                 )}
                 
-                {/* OVERLAY GRADIENT DIBUAT LEBIH TRANSPARAN */}
                 <div className="absolute inset-0 bg-gradient-to-r from-wf-darkest/80 via-wf-darkest/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-wf-darkest via-transparent to-transparent" />
 
-                {/* Content Container (Teks Kanan Bawah) */}
                 <div className="max-w-[1800px] w-full mx-auto relative z-10 flex justify-end pb-6">
                 <div className="text-right max-w-2xl space-y-2">
                     {heroBanner.badge && (
@@ -83,7 +77,6 @@ export default function Home({ setActivePage }) {
             </div>
         </section>
 
-      {/* ---------------- OVERLAPPING CAROUSEL (3:4) ---------------- */}
       <div className="max-w-[1800px] w-full mx-auto px-6 lg:px-12 -mt-36 relative z-20">
         <div className="relative bg-wf-light p-6 md:p-8 rounded-3xl shadow-xl border border-wf-medium/30">
           
@@ -138,17 +131,13 @@ export default function Home({ setActivePage }) {
         </div>
       </div>
 
-      {/* ---------------- SECTION 2: SAMBUTAN & RECENT APPS (TANPA GARIS SAMBUNGAN & BER-RADIUS HALUS) ---------------- */}
       <section className="max-w-[1800px] w-full mx-auto px-6 lg:px-12 pt-4">
         
-        {/* BARIS ATAS: KANVAS SAMBUTAN + WIDGET RECENT APPS STACK */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* KANVAS SAMBUTAN ATAS (Tanpa border bawah & tanpa shadow pembatas) */}
           <div className="lg:col-span-7 bg-wf-light rounded-tl-3xl rounded-tr-3xl p-6 md:p-8 border border-wf-medium/30 border-b-0">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
               
-              {/* FOTO KEPALA SEKOLAH (3:4 PORTRAIT) */}
               <div className="md:col-span-4 max-w-[210px] w-full bg-wf-dark aspect-[3/4] rounded-tr-2xl overflow-hidden relative mx-auto md:mx-0">
                 <img 
                   src= {kepsek}
@@ -157,7 +146,6 @@ export default function Home({ setActivePage }) {
                 />
               </div>
 
-              {/* TEKS SAMBUTAN */}
               <div className="md:col-span-8 space-y-3">
                 <span className="text-xs font-bold text-wf-dark uppercase tracking-wider block">
                   -
@@ -180,7 +168,6 @@ export default function Home({ setActivePage }) {
             </div>
           </div>
 
-          {/* WIDGET 5 RECENT APPS STACK */}
           <div className="lg:col-span-5 flex items-center justify-center py-2 px-2">
             <div className="flex -space-x-10 hover:-space-x-4 transition-all duration-300 items-center justify-center w-full">
               {[
@@ -221,11 +208,9 @@ export default function Home({ setActivePage }) {
 
         </div>
 
-        {/* BARIS BAWAH: BILAH KAKI L-SHAPE + 3 KARTU STATISTIK (DILENGKAPI RADIUS LENGKUNG DI LINGKARAN O) */}
         <div className="bg-wf-light rounded-bl-3xl rounded-br-3xl rounded-tr-3xl p-6 md:p-8 border border-wf-medium/30 border-t-0 -mt-px">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* BILAH EXTENSION FOTO L-SHAPE */}
             <div className="lg:col-span-5 bg-wf-darkest text-wf-white p-4 rounded-r-2xl rounded-bl-xl flex items-center justify-between shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="w-2.5 h-8 bg-wf-blue rounded-full"></div>
@@ -239,7 +224,6 @@ export default function Home({ setActivePage }) {
               </span>
             </div>
 
-            {/* 3 KARTU STATISTIK */}
             <div className="lg:col-span-7 grid grid-cols-3 gap-4">
               <div className="bg-wf-white p-4 rounded-2xl border border-wf-medium/30 text-center shadow-2xs">
                 <Award className="mx-auto text-wf-blue mb-1" size={22} />
@@ -263,7 +247,6 @@ export default function Home({ setActivePage }) {
 
       </section>
 
-      {/* ---------------- SECTION 3: GRID KARTU BERITA 3 KOLOM ---------------- */}
       <section className="max-w-[1800px] w-full mx-auto px-6 lg:px-12">
         <div className="mb-8">
           <span className="text-xs font-bold text-wf-dark uppercase tracking-wider block">

@@ -2,30 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Newspaper, Calendar, Megaphone, Trophy, ArrowRight, Activity } from 'lucide-react';
 
 export default function Berita({ setActivePage }) {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (SIAP UNTUK BACKEND CMS)
-  // ---------------------------------------------------------
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('Semua');
   const [beritaData, setBeritaData] = useState([]);
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchBerita = async () => {
       setIsLoading(true);
       
       /* 
-      ===============================================================
-      [BACKEND LOGIC PLACEHOLDER]
-      Contoh pemanggilan API Supabase:
       const { data } = await supabase.from('berita').select('*').order('created_at', { ascending: false });
       if (data) setBeritaData(data);
-      ===============================================================
       */
       
-      // Data Dummy (Urutan terbaru di atas)
       const dummyDatabase = [
         {
           id: 'berita-1',
@@ -33,7 +22,7 @@ export default function Berita({ setActivePage }) {
           kategori: 'Kegiatan',
           tanggal: '02 Mei 2026',
           snippet: 'Upacara bendera dan berbagai perlombaan mewarnai peringatan Hardiknas tahun ini. Semangat belajar dan merdeka belajar menjadi tema utama dalam sambutan Kepala Sekolah.',
-          fotoUrl: '', // KOSONG - Placeholder
+          fotoUrl: '',
           penulis: 'Tim Jurnalis Sekolah'
         },
         {
@@ -91,17 +80,12 @@ export default function Berita({ setActivePage }) {
 
     fetchBerita();
   }, []);
-
-  // ---------------------------------------------------------
-  // 3. LOGIKA FILTER KATEGORI
-  // ---------------------------------------------------------
   const filters = ['Semua', 'Pengumuman', 'Kegiatan', 'Prestasi'];
   
   const filteredBerita = activeFilter === 'Semua' 
     ? beritaData 
     : beritaData.filter(item => item.kategori === activeFilter);
 
-  // Helper icon berdasarkan kategori
   const getCategoryIcon = (kategori) => {
     switch(kategori) {
       case 'Pengumuman': return <Megaphone size={14} />;
@@ -111,9 +95,6 @@ export default function Berita({ setActivePage }) {
     }
   };
 
-  // ---------------------------------------------------------
-  // 4. UI COMPONENTS
-  // ---------------------------------------------------------
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-wf-white text-wf-darkest">
@@ -125,9 +106,6 @@ export default function Berita({ setActivePage }) {
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-12 bg-wf-white text-wf-darkest">
       
-      {/* =========================================
-          HEADER & FILTER SECTION
-      ========================================= */}
       <div className="bg-wf-light rounded-[32px] border border-wf-medium/30 p-8 md:p-12 shadow-sm flex flex-col lg:flex-row lg:items-end justify-between gap-8">
         <div className="space-y-3 max-w-2xl">
           <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
@@ -141,7 +119,6 @@ export default function Berita({ setActivePage }) {
           </p>
         </div>
 
-        {/* Filter Pills */}
         <div className="flex flex-wrap items-center gap-2 bg-wf-white p-2 rounded-2xl md:rounded-full border border-wf-medium/30 shrink-0">
           {filters.map((f) => (
             <button
@@ -159,16 +136,12 @@ export default function Berita({ setActivePage }) {
         </div>
       </div>
 
-      {/* =========================================
-          GRID ARSIP BERITA
-      ========================================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredBerita.map((item) => (
           <div 
             key={item.id} 
             className="bg-wf-light rounded-3xl border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-shadow group flex flex-col"
           >
-            {/* AREA FOTO (Rasio 16:9) */}
             <div className="w-full aspect-video bg-wf-dark flex items-center justify-center relative overflow-hidden">
               {item.fotoUrl ? (
                 <img 
@@ -185,16 +158,13 @@ export default function Berita({ setActivePage }) {
                 </div>
               )}
               
-              {/* Badge Kategori */}
               <div className="absolute top-4 left-4 bg-wf-darkest/90 backdrop-blur text-wf-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg border border-wf-medium/20 z-20 flex items-center gap-1.5">
                 {getCategoryIcon(item.kategori)}
                 {item.kategori}
               </div>
             </div>
 
-            {/* INFORMASI TEKS */}
             <div className="p-6 flex flex-col flex-grow bg-wf-white">
-              {/* Tanggal & Penulis */}
               <div className="flex items-center gap-4 text-[10px] md:text-xs font-bold text-wf-dark mb-3">
                 <span className="flex items-center gap-1.5">
                   <Calendar size={12} className="text-wf-blue" />
@@ -204,7 +174,6 @@ export default function Berita({ setActivePage }) {
                 <span>{item.penulis}</span>
               </div>
 
-              {/* Judul & Snippet */}
               <h3 className="font-bold text-wf-darkest text-lg leading-snug mb-3 line-clamp-2 group-hover:text-wf-blue transition-colors">
                 {item.judul}
               </h3>
@@ -212,7 +181,6 @@ export default function Berita({ setActivePage }) {
                 {item.snippet}
               </p>
               
-              {/* Tombol Baca */}
               <div className="pt-4 border-t border-wf-medium/20 mt-auto">
                 <button 
                   onClick={() => setActivePage('berita-detail')} // Routing dummy ke Single Post
@@ -227,7 +195,6 @@ export default function Berita({ setActivePage }) {
         ))}
       </div>
 
-      {/* KONDISI JIKA DATA FILTER KOSONG */}
       {filteredBerita.length === 0 && (
         <div className="py-24 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed flex flex-col items-center justify-center">
           <Newspaper size={40} className="text-wf-medium/50 mb-3" />

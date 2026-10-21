@@ -19,8 +19,6 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 text-gray-900 flex flex-col justify-between">
       <div>
         <Navbar activePage={activePage} setActivePage={setActivePage} />
-        
-        {/* Render Halaman Dinamis */}
         <main>
           {activePage === 'home' && <Home setActivePage={setActivePage} />}
           {activePage === 'profil' && <Profil />}

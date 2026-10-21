@@ -2,37 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Search, ArrowRight, Activity, Palette, BookOpen, Shield } from 'lucide-react';
 
 export default function Ekskul({ setActivePage }) {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (SIAP UNTUK BACKEND CMS)
-  // ---------------------------------------------------------
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('Semua');
   const [ekskulData, setEkskulData] = useState([]);
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchEkskul = async () => {
       setIsLoading(true);
       
       /* 
-      ===============================================================
-      [BACKEND LOGIC PLACEHOLDER]
-      Contoh pemanggilan API Supabase:
       const { data } = await supabase.from('ekstrakurikuler').select('*');
       if (data) setEkskulData(data);
-      ===============================================================
       */
-      
-      // Data Dummy
+
       const dummyDatabase = [
         {
           id: 'pramuka',
           nama: 'Prajurit Muda Karana (Pramuka)',
           kategori: 'Wajib',
           deskripsi: 'Ekstrakurikuler wajib untuk melatih kedisiplinan, kemandirian, dan kepemimpinan siswa melalui kegiatan alam dan sosial.',
-          fotoUrl: '', // KOSONG - Placeholder banner/logo ekskul
+          fotoUrl: '',
           anggota: 120
         },
         {
@@ -85,17 +74,12 @@ export default function Ekskul({ setActivePage }) {
 
     fetchEkskul();
   }, []);
-
-  // ---------------------------------------------------------
-  // 3. LOGIKA FILTER
-  // ---------------------------------------------------------
   const filters = ['Semua', 'Wajib', 'Akademik', 'Olahraga', 'Seni'];
   
   const filteredEkskul = activeFilter === 'Semua' 
     ? ekskulData 
     : ekskulData.filter(item => item.kategori === activeFilter);
 
-  // Helper icon berdasarkan kategori
   const getCategoryIcon = (kategori) => {
     switch(kategori) {
       case 'Wajib': return <Shield size={14} />;
@@ -106,9 +90,6 @@ export default function Ekskul({ setActivePage }) {
     }
   };
 
-  // ---------------------------------------------------------
-  // 4. UI COMPONENTS
-  // ---------------------------------------------------------
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-wf-white text-wf-darkest">
@@ -120,7 +101,6 @@ export default function Ekskul({ setActivePage }) {
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-12 bg-wf-white text-wf-darkest">
       
-      {/* HEADER & FILTER SECTION */}
       <div className="bg-wf-light rounded-[32px] border border-wf-medium/30 p-8 md:p-12 shadow-sm flex flex-col lg:flex-row lg:items-end justify-between gap-8">
         <div className="space-y-3 max-w-2xl">
           <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
@@ -134,7 +114,6 @@ export default function Ekskul({ setActivePage }) {
           </p>
         </div>
 
-        {/* Filter Pills */}
         <div className="flex flex-wrap items-center gap-2 bg-wf-white p-2 rounded-2xl md:rounded-full border border-wf-medium/30 shrink-0">
           {filters.map((f) => (
             <button
@@ -152,14 +131,12 @@ export default function Ekskul({ setActivePage }) {
         </div>
       </div>
 
-      {/* GRID KARTU EKSKUL */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredEkskul.map((item) => (
           <div 
             key={item.id} 
             className="bg-wf-light rounded-3xl border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-shadow group flex flex-col"
           >
-            {/* AREA FOTO/BANNER (Placeholder) */}
             <div className="w-full aspect-video bg-wf-dark flex items-center justify-center relative overflow-hidden">
               {item.fotoUrl ? (
                 <img 
@@ -175,14 +152,12 @@ export default function Ekskul({ setActivePage }) {
                 </div>
               )}
               
-              {/* Badge Kategori */}
               <div className="absolute top-4 left-4 bg-wf-darkest/90 backdrop-blur text-wf-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg border border-wf-medium/20 z-20 flex items-center gap-1.5">
                 {getCategoryIcon(item.kategori)}
                 {item.kategori}
               </div>
             </div>
 
-            {/* INFORMASI TEKS & TOMBOL */}
             <div className="p-6 md:p-8 flex flex-col flex-grow bg-wf-white">
               <h3 className="font-bold text-wf-darkest text-xl leading-snug mb-3 line-clamp-2">
                 {item.nama}
@@ -191,15 +166,13 @@ export default function Ekskul({ setActivePage }) {
                 {item.deskripsi}
               </p>
               
-              {/* Footer Kartu (Anggota & Tombol) */}
               <div className="flex items-center justify-between pt-5 border-t border-wf-medium/20 mt-auto">
                 <span className="text-[10px] font-bold text-wf-dark">
                   {item.anggota} Anggota Aktif
                 </span>
                 
-                {/* Tombol ke Mini Blog */}
                 <button 
-                  onClick={() => setActivePage('ekskul-detail')} // Routing dummy ke halaman detail ekskul
+                  onClick={() => setActivePage('ekskul-detail')} 
                   className="text-xs font-bold text-wf-blue hover:text-wf-darkest flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   Kunjungi Blog
@@ -211,7 +184,6 @@ export default function Ekskul({ setActivePage }) {
         ))}
       </div>
 
-      {/* KONDISI JIKA DATA FILTER KOSONG */}
       {filteredEkskul.length === 0 && (
         <div className="py-24 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed flex flex-col items-center justify-center">
           <Search size={40} className="text-wf-medium/50 mb-3" />

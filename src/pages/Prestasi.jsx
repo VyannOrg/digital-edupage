@@ -2,23 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Trophy, Medal, Star, Calendar, User, Search, Award, Filter, Globe } from 'lucide-react';
 
 export default function Prestasi() {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (DUAL FILTER)
-  // ---------------------------------------------------------
   const [isLoading, setIsLoading] = useState(true);
   const [activeKategori, setActiveKategori] = useState('Semua');
   const [activeTingkat, setActiveTingkat] = useState('Semua');
   const [prestasiData, setPrestasiData] = useState([]);
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchPrestasi = async () => {
       setIsLoading(true);
       
       const dummyDatabase = [
-        // Prestasi Internasional
         {
           id: 7,
           judul: 'Gold Medal - Asian Youth Robotics & Innovation',
@@ -29,7 +22,6 @@ export default function Prestasi() {
           deskripsi: 'Mengharumkan nama bangsa dengan meraih medali emas pada kompetisi inovasi teknologi pemuda tingkat Asia di Singapura.',
           fotoUrl: '', 
         },
-        // Prestasi Nasional
         {
           id: 2,
           judul: 'Medali Emas Olimpiade Sains Nasional (Matematika)',
@@ -40,7 +32,6 @@ export default function Prestasi() {
           deskripsi: 'Meraih skor tertinggi dalam babak final OSN bidang Matematika yang diselenggarakan di Jakarta.',
           fotoUrl: '', 
         },
-        // Prestasi Provinsi
         {
           id: 1,
           judul: 'Juara 1 Lomba Robotik Tingkat Provinsi',
@@ -61,7 +52,6 @@ export default function Prestasi() {
           deskripsi: 'Membawakan naskah adaptasi sejarah lokal dengan pementasan teatrikal yang memukau para juri.',
           fotoUrl: '', 
         },
-        // Prestasi Kabupaten/Kota
         {
           id: 3,
           judul: 'Juara 2 Turnamen Bola Basket Antar Pelajar',
@@ -72,7 +62,6 @@ export default function Prestasi() {
           deskripsi: 'Menunjukkan sportivitas dan kerja sama tim yang luar biasa hingga berhasil menembus babak grand final.',
           fotoUrl: '', 
         },
-        // Prestasi Internal (Classmeet)
         {
           id: 8,
           judul: 'Juara 1 Futsal Putra - Classmeet Semester Genap',
@@ -104,12 +93,8 @@ export default function Prestasi() {
     fetchPrestasi();
   }, []);
 
-  // ---------------------------------------------------------
-  // 3. LOGIKA DUAL FILTER
-  // ---------------------------------------------------------
   const kategoriFilters = ['Semua', 'Akademik', 'Olahraga', 'Seni', 'Institusi'];
   
-  // Tingkat sudah ditambahkan Internasional dan Internal (Classmeet)
   const tingkatFilters = ['Semua', 'Internasional', 'Nasional', 'Provinsi', 'Kabupaten/Kota', 'Internal (Classmeet)'];
   
   const filteredPrestasi = prestasiData.filter(item => {
@@ -118,14 +103,13 @@ export default function Prestasi() {
     return matchKategori && matchTingkat;
   });
 
-  // Helper untuk menentukan icon dan warna tingkat kejuaraan
   const getTingkatStyle = (tingkat) => {
     switch(tingkat) {
       case 'Internasional': return 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30 shadow-sm';
       case 'Nasional': return 'bg-yellow-500/10 text-yellow-600 border-yellow-500/30 shadow-sm';
       case 'Provinsi': return 'bg-sky-500/10 text-sky-600 border-sky-500/30';
       case 'Kabupaten/Kota': return 'bg-orange-500/10 text-orange-600 border-orange-500/30';
-      case 'Internal (Classmeet)': return 'bg-wf-light text-wf-dark border-wf-medium/30'; // Visual lebih redup/kalem
+      case 'Internal (Classmeet)': return 'bg-wf-light text-wf-dark border-wf-medium/30';
       default: return 'bg-wf-blue/10 text-wf-blue border-wf-blue/20';
     }
   };
@@ -135,9 +119,6 @@ export default function Prestasi() {
     return <Award size={12} />;
   }
 
-  // ---------------------------------------------------------
-  // 4. UI COMPONENTS
-  // ---------------------------------------------------------
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-wf-white text-wf-darkest">
@@ -149,12 +130,8 @@ export default function Prestasi() {
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-12 bg-wf-white text-wf-darkest">
       
-      {/* =========================================
-          HEADER & FILTER SECTION
-      ========================================= */}
       <div className="bg-wf-light rounded-[32px] border border-wf-medium/30 p-8 md:p-12 shadow-sm flex flex-col xl:flex-row xl:items-end justify-between gap-10">
         
-        {/* Teks Header */}
         <div className="space-y-3 max-w-2xl">
           <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
             Hall of Fame
@@ -167,16 +144,12 @@ export default function Prestasi() {
           </p>
         </div>
 
-        {/* =========================================
-            DUAL FILTER PILLS
-        ========================================= */}
         <div className="flex flex-col gap-5 xl:items-end w-full xl:w-auto shrink-0 bg-wf-white p-5 md:p-6 rounded-3xl border border-wf-medium/30 shadow-xs">
           <div className="flex items-center gap-2 mb-1 xl:hidden">
             <Filter size={16} className="text-wf-blue" />
             <span className="font-bold text-sm text-wf-darkest">Saring Prestasi</span>
           </div>
 
-          {/* Baris 1: Filter Kategori Lomba */}
           <div className="space-y-2 xl:text-right w-full">
             <span className="text-[10px] font-bold text-wf-dark uppercase tracking-widest block px-2 xl:px-0">
               Kategori Lomba
@@ -198,7 +171,6 @@ export default function Prestasi() {
             </div>
           </div>
 
-          {/* Baris 2: Filter Tingkat Kejuaraan */}
           <div className="space-y-2 xl:text-right w-full">
             <span className="text-[10px] font-bold text-wf-dark uppercase tracking-widest block px-2 xl:px-0">
               Tingkat Kejuaraan
@@ -223,16 +195,12 @@ export default function Prestasi() {
 
       </div>
 
-      {/* =========================================
-          GRID KARTU PRESTASI
-      ========================================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredPrestasi.map((item) => (
           <div 
             key={item.id} 
             className="bg-wf-light rounded-[28px] border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col relative"
           >
-            {/* AREA FOTO PIALA/MOMEN (Rasio 4:3) */}
             <div className="w-full aspect-[4/3] bg-wf-dark flex items-center justify-center relative overflow-hidden border-b border-wf-medium/20">
               {item.fotoUrl ? (
                 <img 
@@ -249,17 +217,14 @@ export default function Prestasi() {
                 </div>
               )}
               
-              {/* Badge Tingkat Kejuaraan (Kanan Atas) */}
               <div className={`absolute top-4 right-4 px-3 py-1.5 rounded-lg border text-[10px] font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 z-20 ${getTingkatStyle(item.tingkat)}`}>
                 {getTingkatIcon(item.tingkat)}
                 {item.tingkat}
               </div>
             </div>
 
-            {/* INFORMASI TEKS */}
             <div className="p-6 md:p-8 flex flex-col flex-grow bg-wf-white">
               
-              {/* Kategori & Tanggal */}
               <div className="flex items-center justify-between mb-4">
                 <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-wf-blue bg-wf-blue/10 px-2.5 py-1 rounded border border-wf-blue/20 uppercase tracking-wider">
                   {item.kategori === 'Akademik' ? <Star size={10} /> : <Medal size={10} />}
@@ -271,7 +236,6 @@ export default function Prestasi() {
                 </span>
               </div>
 
-              {/* Judul & Deskripsi */}
               <h3 className={`font-bold text-lg leading-snug mb-3 ${item.tingkat === 'Internal (Classmeet)' ? 'text-wf-darkest/80' : 'text-wf-darkest'}`}>
                 {item.judul}
               </h3>
@@ -279,7 +243,6 @@ export default function Prestasi() {
                 {item.deskripsi}
               </p>
               
-              {/* Peraih Prestasi (Footer Kartu) */}
               <div className="pt-4 border-t border-wf-medium/20 mt-auto flex items-start gap-2 text-sm text-wf-darkest">
                 <User size={16} className={`${item.tingkat === 'Internal (Classmeet)' ? 'text-wf-dark' : 'text-wf-blue'} shrink-0 mt-0.5`} />
                 <div>
@@ -293,7 +256,6 @@ export default function Prestasi() {
         ))}
       </div>
 
-      {/* KONDISI JIKA DATA FILTER KOSONG */}
       {filteredPrestasi.length === 0 && (
         <div className="py-24 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed flex flex-col items-center justify-center">
           <Search size={40} className="text-wf-medium/50 mb-3" />

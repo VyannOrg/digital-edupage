@@ -2,40 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { User, Briefcase, GraduationCap, Mail } from 'lucide-react';
 
 export default function GuruStaf() {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (SIAP UNTUK BACKEND CMS)
-  // ---------------------------------------------------------
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('Semua');
   const [staffData, setStaffData] = useState([]);
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchStaffData = async () => {
       setIsLoading(true);
       
       /* 
-      ===============================================================
-      [BACKEND LOGIC PLACEHOLDER]
-      Nanti ganti kode di bawah ini dengan fetch API aslimu (Supabase).
-      Contoh:
       const { data } = await supabase.from('guru_staf').select('*');
       if(data) setStaffData(data);
-      ===============================================================
       */
       
-      // Data Dummy (Meniru struktur database)
       const dummyDatabase = [
         {
           id: 1,
           name: 'Drs. H. Ahmad Wijaya, M.Pd.',
           role: 'Kepala Sekolah',
-          category: 'Guru', // Kategori untuk filter
+          category: 'Guru',
           nip: '19700101 199512 1 001',
           email: 'ahmad.wijaya@edupage.sch.id',
-          photoUrl: '', // KOSONG - Placeholder
+          photoUrl: '',
         },
         {
           id: 2,
@@ -84,28 +72,21 @@ export default function GuruStaf() {
         },
       ];
 
-      // Simulasi delay jaringan
       setTimeout(() => {
         setStaffData(dummyDatabase);
         setIsLoading(false);
-      }, 600); // delay 0.6 detik
+      }, 600);
     };
 
     fetchStaffData();
   }, []);
 
-  // ---------------------------------------------------------
-  // 3. LOGIKA FILTER
-  // ---------------------------------------------------------
   const filters = ['Semua', 'Guru', 'Staf'];
   
   const filteredData = activeFilter === 'Semua' 
     ? staffData 
     : staffData.filter(person => person.category === activeFilter);
 
-  // ---------------------------------------------------------
-  // 4. UI COMPONENTS
-  // ---------------------------------------------------------
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-wf-white text-wf-darkest">
@@ -117,7 +98,6 @@ export default function GuruStaf() {
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-10 bg-wf-white text-wf-darkest">
       
-      {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
           <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
@@ -131,7 +111,6 @@ export default function GuruStaf() {
           </p>
         </div>
 
-        {/* FILTER BUTTONS (Pill Style) */}
         <div className="flex items-center gap-2 bg-wf-light p-1.5 rounded-full border border-wf-medium/30 self-start md:self-auto">
           {filters.map((f) => (
             <button
@@ -149,14 +128,12 @@ export default function GuruStaf() {
         </div>
       </div>
 
-      {/* GRID KARTU PROFIL */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredData.map((person) => (
           <div 
             key={person.id} 
             className="bg-wf-light rounded-[28px] border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-shadow group flex flex-col"
           >
-            {/* Area Placeholder Foto (Rasio 3:4) */}
             <div className="w-full aspect-[3/4] bg-wf-dark flex items-center justify-center relative overflow-hidden">
               {person.photoUrl ? (
                 <img 
@@ -172,11 +149,9 @@ export default function GuruStaf() {
                   </span>
                 </div>
               )}
-              {/* Overlay Halus */}
               <div className="absolute inset-0 bg-gradient-to-t from-wf-darkest/60 via-transparent to-transparent opacity-50" />
             </div>
 
-            {/* Area Informasi Teks */}
             <div className="p-6 flex flex-col flex-grow justify-between bg-wf-white">
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-wf-blue uppercase tracking-wider flex items-center gap-1.5 mb-2">
@@ -211,7 +186,6 @@ export default function GuruStaf() {
         ))}
       </div>
 
-      {/* JIKA DATA FILTER KOSONG */}
       {filteredData.length === 0 && (
         <div className="py-20 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed">
           <p className="text-wf-dark font-medium">Tidak ada data {activeFilter.toLowerCase()} yang ditemukan.</p>

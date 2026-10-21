@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Building2, MapPin, Target, Compass, Users, History, Image as ImageIcon } from 'lucide-react';
 
 export default function Profil() {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (SIAP UNTUK BACKEND CMS)
-  // ---------------------------------------------------------
   const [activeTab, setActiveTab] = useState('profil');
   const [isLoading, setIsLoading] = useState(true);
   
-  // State penampung data dari database
   const [profileData, setProfileData] = useState({
     name: '',
     sejarah: '',
@@ -16,28 +12,19 @@ export default function Profil() {
     misi: [],
     identitas: [],
     alamat: [],
-    fotoSekolahUrl: '',     // Placeholder kosong
-    fotoStrukturUrl: '',    // Placeholder kosong
+    fotoSekolahUrl: '',
+    fotoStrukturUrl: '',
   });
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchProfileData = async () => {
       setIsLoading(true);
       
       /* 
-      ===============================================================
-      [BACKEND LOGIC PLACEHOLDER]
-      Nanti ganti kode di bawah ini dengan fetch API aslimu (Supabase).
-      Contoh:
       const { data } = await supabase.from('profil_sekolah').select('*').single();
       if(data) setProfileData(data);
-      ===============================================================
       */
-      
-      // Data Dummy (Meniru struktur database)
+
       const dummyDatabase = {
         name: 'SMP Digital Edupage',
         sejarah: 'Berdiri sejak tahun 2010, SMP Digital Edupage telah bertransformasi menjadi institusi percontohan dalam penerapan kurikulum berbasis teknologi. Kami terus berinovasi untuk mencetak generasi yang adaptif terhadap disrupsi digital tanpa meninggalkan nilai-nilai karakter bangsa.',
@@ -69,23 +56,19 @@ export default function Profil() {
           { label: 'Kode Pos', value: '67311' },
           { label: 'Nomor Telepon', value: '(0334) 881-234' },
         ],
-        fotoSekolahUrl: '',  // KOSONG SESUAI REQUEST
-        fotoStrukturUrl: '', // KOSONG SESUAI REQUEST
+        fotoSekolahUrl: '',
+        fotoStrukturUrl: '',
       };
 
-      // Simulasi delay jaringan
       setTimeout(() => {
         setProfileData(dummyDatabase);
         setIsLoading(false);
-      }, 500); // delay 0.5 detik
+      }, 500);
     };
 
     fetchProfileData();
   }, []);
 
-  // ---------------------------------------------------------
-  // 3. UI COMPONENTS
-  // ---------------------------------------------------------
   const tabs = [
     { id: 'profil', label: 'Profil & Sejarah' },
     { id: 'identitas', label: 'Identitas Resmi' },
@@ -104,7 +87,6 @@ export default function Profil() {
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-12 bg-wf-white text-wf-darkest">
       
-      {/* HEADER SECTION */}
       <div className="space-y-2">
         <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
           Mengenal Lebih Dekat
@@ -114,10 +96,9 @@ export default function Profil() {
         </h1>
       </div>
 
-      {/* KONTAINER UTAMA */}
       <div className="bg-wf-light rounded-[32px] border border-wf-medium/30 p-6 md:p-10 shadow-sm space-y-10">
         
-        {/* NAVIGASI TABS (Pill Style) */}
+        
         <div className="flex flex-wrap items-center gap-2 border-b border-wf-medium/20 pb-6">
           {tabs.map((tab) => (
             <button
@@ -134,13 +115,8 @@ export default function Profil() {
           ))}
         </div>
 
-        {/* =========================================
-            KONTEN 1: PROFIL & SEJARAH
-        ========================================= */}
         {activeTab === 'profil' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start animate-in fade-in slide-in-from-bottom-4 duration-500">
-            
-            {/* Area Teks */}
             <div className="lg:col-span-6 space-y-6">
               <div className="flex items-center gap-3 text-wf-darkest">
                 <History size={24} className="text-wf-blue" />
@@ -150,8 +126,6 @@ export default function Profil() {
                 {profileData.sejarah}
               </p>
             </div>
-
-            {/* Area Placeholder Foto Sekolah */}
             <div className="lg:col-span-6">
               <div className="w-full aspect-[4/3] bg-wf-medium/10 border-2 border-dashed border-wf-medium/30 rounded-3xl flex flex-col items-center justify-center text-wf-dark overflow-hidden relative">
                 {profileData.fotoSekolahUrl ? (
@@ -167,13 +141,9 @@ export default function Profil() {
           </div>
         )}
 
-        {/* =========================================
-            KONTEN 2: IDENTITAS RESMI (KEMBALI KE FORMAT TABEL)
-        ========================================= */}
         {activeTab === 'identitas' && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             
-            {/* Tabel Data Identitas */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 pb-2 border-b border-wf-medium/20">
                 <Building2 className="text-wf-blue" size={24} />
@@ -200,8 +170,6 @@ export default function Profil() {
                 </div>
               </div>
             </div>
-
-            {/* Tabel Rincian Alamat */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 pb-2 border-b border-wf-medium/20">
                 <MapPin className="text-wf-blue" size={24} />
@@ -231,14 +199,8 @@ export default function Profil() {
             
           </div>
         )}
-
-        {/* =========================================
-            KONTEN 3: VISI & MISI
-        ========================================= */}
         {activeTab === 'visi-misi' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            
-            {/* Visi */}
             <div className="lg:col-span-5 bg-wf-darkest text-wf-white p-8 md:p-10 rounded-3xl shadow-md flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-6">
                 <Target size={28} className="text-wf-blue" />
@@ -248,8 +210,6 @@ export default function Profil() {
                 "{profileData.visi}"
               </p>
             </div>
-
-            {/* Misi */}
             <div className="lg:col-span-7 bg-wf-white p-8 md:p-10 rounded-3xl border border-wf-medium/30 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <Compass size={28} className="text-wf-blue" />
@@ -269,10 +229,6 @@ export default function Profil() {
 
           </div>
         )}
-
-        {/* =========================================
-            KONTEN 4: STRUKTUR ORGANISASI
-        ========================================= */}
         {activeTab === 'struktur' && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-center gap-3 justify-center text-center">
@@ -280,7 +236,6 @@ export default function Profil() {
               <h2 className="text-2xl font-bold text-wf-darkest">Struktur Organisasi</h2>
             </div>
             
-            {/* Area Placeholder Foto Struktur */}
             <div className="w-full max-w-4xl mx-auto aspect-video bg-wf-medium/10 border-2 border-dashed border-wf-medium/30 rounded-3xl flex flex-col items-center justify-center text-wf-dark overflow-hidden relative">
               {profileData.fotoStrukturUrl ? (
                 <img src={profileData.fotoStrukturUrl} alt="Bagan Struktur Organisasi" className="w-full h-full object-contain" />

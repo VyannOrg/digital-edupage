@@ -2,46 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { Map, Images, Search, MapPin, MonitorPlay } from 'lucide-react';
 
 export default function Fasilitas() {
-  // ---------------------------------------------------------
-  // 1. STATE MANAGEMENT (SIAP UNTUK BACKEND CMS)
-  // ---------------------------------------------------------
   const [isLoading, setIsLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('Semua');
   
   const [fasilitasData, setFasilitasData] = useState({
-    denahUrl: '', // Placeholder untuk foto/peta denah
+    denahUrl: '',
     fasilitas: []
   });
 
-  // ---------------------------------------------------------
-  // 2. SIMULASI FETCH API BACKEND
-  // ---------------------------------------------------------
   useEffect(() => {
     const fetchFasilitas = async () => {
       setIsLoading(true);
       
       /* 
-      ===============================================================
-      [BACKEND LOGIC PLACEHOLDER]
-      Contoh pemanggilan API Supabase:
       const { data: denah } = await supabase.from('pengaturan').select('denah_url').single();
       const { data: daftarFasilitas } = await supabase.from('fasilitas').select('*');
       if (denah && daftarFasilitas) {
         setFasilitasData({ denahUrl: denah.denah_url, fasilitas: daftarFasilitas });
       }
-      ===============================================================
       */
-      
-      // Data Dummy
+
       const dummyDatabase = {
-        denahUrl: '', // KOSONG - Placeholder gambar denah
+        denahUrl: '',
         fasilitas: [
           {
             id: 1,
             nama: 'Laboratorium Rekayasa Perangkat Lunak',
             kategori: 'Akademik',
             deskripsi: 'Dilengkapi dengan PC spesifikasi tinggi, dual monitor, dan koneksi internet fiber optic khusus untuk praktik coding dan pengembangan aplikasi.',
-            fotoUrl: '', // KOSONG
+            fotoUrl: '',
           },
           {
             id: 2,
@@ -90,18 +79,12 @@ export default function Fasilitas() {
     fetchFasilitas();
   }, []);
 
-  // ---------------------------------------------------------
-  // 3. LOGIKA FILTER KATEGORI FASILITAS
-  // ---------------------------------------------------------
   const filters = ['Semua', 'Akademik', 'Olahraga', 'Umum'];
   
   const filteredFasilitas = activeFilter === 'Semua' 
     ? fasilitasData.fasilitas 
     : fasilitasData.fasilitas.filter(item => item.kategori === activeFilter);
 
-  // ---------------------------------------------------------
-  // 4. UI COMPONENTS
-  // ---------------------------------------------------------
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-wf-white text-wf-darkest">
@@ -113,9 +96,6 @@ export default function Fasilitas() {
   return (
     <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-16 bg-wf-white text-wf-darkest">
       
-      {/* =========================================
-          SECTION 1: HEADER & DENAH SEKOLAH
-      ========================================= */}
       <section className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         
         <div className="space-y-2 max-w-3xl">
@@ -130,14 +110,12 @@ export default function Fasilitas() {
           </p>
         </div>
 
-        {/* CONTAINER DENAH (MAPS) */}
         <div className="bg-wf-light p-6 md:p-8 rounded-[32px] border border-wf-medium/30 shadow-sm space-y-6">
           <div className="flex items-center gap-3">
             <Map className="text-wf-blue" size={24} />
             <h2 className="text-2xl font-bold text-wf-darkest">Peta Denah Interaktif</h2>
           </div>
 
-          {/* Area Placeholder Foto Denah */}
           <div className="w-full aspect-[21/9] md:aspect-[3/1] bg-wf-dark rounded-2xl border-2 border-dashed border-wf-medium/40 flex flex-col items-center justify-center relative overflow-hidden group">
             {fasilitasData.denahUrl ? (
               <img 
@@ -159,19 +137,14 @@ export default function Fasilitas() {
 
       </section>
 
-      {/* =========================================
-          SECTION 2: GALERI FASILITAS UTAMA
-      ========================================= */}
       <section className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
         
-        {/* HEADER FASILITAS & FILTER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b border-wf-medium/20">
           <div className="flex items-center gap-3">
             <Images className="text-wf-blue" size={28} />
             <h2 className="text-2xl md:text-3xl font-bold text-wf-darkest">Galeri Fasilitas</h2>
           </div>
 
-          {/* Filter Kategori */}
           <div className="flex items-center gap-2 bg-wf-light p-1.5 rounded-full border border-wf-medium/30">
             {filters.map((f) => (
               <button
@@ -189,14 +162,12 @@ export default function Fasilitas() {
           </div>
         </div>
 
-        {/* GRID KARTU FASILITAS */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredFasilitas.map((item) => (
             <div 
               key={item.id} 
               className="bg-wf-light rounded-3xl border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col"
             >
-              {/* Area Placeholder Foto Fasilitas (Rasio 16:9) */}
               <div className="w-full aspect-video bg-wf-dark flex items-center justify-center relative overflow-hidden border-b border-wf-medium/20">
                 {item.fotoUrl ? (
                   <img 
@@ -211,13 +182,11 @@ export default function Fasilitas() {
                   </div>
                 )}
                 
-                {/* Badge Kategori Mengambang */}
                 <span className="absolute top-4 right-4 bg-wf-darkest/90 backdrop-blur text-wf-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg border border-wf-medium/20 z-20">
                   {item.kategori}
                 </span>
               </div>
 
-              {/* Teks Deskripsi */}
               <div className="p-6 flex flex-col flex-grow bg-wf-white">
                 <h3 className="font-bold text-wf-darkest text-lg leading-snug mb-3 line-clamp-2 group-hover:text-wf-blue transition-colors">
                   {item.nama}
@@ -226,7 +195,6 @@ export default function Fasilitas() {
                   {item.deskripsi}
                 </p>
                 
-                {/* Visual Footer Kartu */}
                 <div className="mt-auto pt-5">
                   <div className="w-8 h-1 bg-wf-blue rounded-full opacity-50 group-hover:w-12 transition-all duration-300"></div>
                 </div>
@@ -236,7 +204,6 @@ export default function Fasilitas() {
           ))}
         </div>
 
-        {/* PESAN JIKA DATA FILTER KOSONG */}
         {filteredFasilitas.length === 0 && (
           <div className="py-20 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed flex flex-col items-center justify-center">
             <Search size={40} className="text-wf-medium/50 mb-3" />
