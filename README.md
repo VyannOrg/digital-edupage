@@ -45,4 +45,4 @@ Proyek ini dibangun menggunakan teknologi web modern berkinerja tinggi:
 * **GitHub:** https://github.com/Rven24
 
 ---
-*© 2026 SMP Digital Edupage. All rights reserved.*
+*© 2026 Digital Edupage. All rights reserved.*
