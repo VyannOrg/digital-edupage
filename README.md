@@ -1,4 +1,4 @@
-# 🏫 Website Resmi SMP Digital Edupage
+# 🏫 Website Digital Edupage
 
 Repositori ini berisi kode sumber (*source code*) untuk frontend website profil resmi institusi pendidikan dengan desain modern, minimalis monokrom, serta siap diintegrasikan dengan backend CMS (seperti Supabase).
 
@@ -41,9 +41,8 @@ Proyek ini dibangun menggunakan teknologi web modern berkinerja tinggi:
 
 ## 📞 Kontak & Informasi Pengembang
 
-* **Email:** [Masukkan Email Anda di Sini]
-* **GitHub:** [Masukkan Link GitHub Anda di Sini]
-* **WhatsApp Humas:** [Masukkan Nomor WhatsApp Resmi di Sini]
+* **Email:** favianlesveva@gmail.com
+* **GitHub:** https://github.com/Rven24
 
 ---
 *© 2026 SMP Digital Edupage. All rights reserved.*
