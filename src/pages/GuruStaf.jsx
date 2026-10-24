@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { User, Briefcase, GraduationCap, Mail } from 'lucide-react';
 
 export default function GuruStaf() {
@@ -9,11 +9,6 @@ export default function GuruStaf() {
   useEffect(() => {
     const fetchStaffData = async () => {
       setIsLoading(true);
-      
-      /* 
-      const { data } = await supabase.from('guru_staf').select('*');
-      if(data) setStaffData(data);
-      */
       
       const dummyDatabase = [
         {
@@ -75,7 +70,7 @@ export default function GuruStaf() {
       setTimeout(() => {
         setStaffData(dummyDatabase);
         setIsLoading(false);
-      }, 600);
+      }, 300);
     };
 
     fetchStaffData();
@@ -96,27 +91,27 @@ export default function GuruStaf() {
   }
 
   return (
-    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-10 bg-wf-white text-wf-darkest">
+    <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 pt-28 sm:pt-32 md:pt-36 pb-16 space-y-8 sm:space-y-10 bg-wf-white text-wf-darkest">
       
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
           <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
             Direktori Pengajar & Tenaga Kependidikan
           </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-wf-darkest tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-wf-darkest tracking-tight">
             Guru & Staf
           </h1>
-          <p className="text-wf-dark text-sm md:text-base leading-relaxed pt-2">
+          <p className="text-wf-dark text-xs sm:text-sm md:text-base leading-relaxed pt-1">
             Kenali lebih dekat para pahlawan tanpa tanda jasa dan tenaga profesional yang berdedikasi membangun ekosistem pendidikan terbaik di institusi kami.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-wf-light p-1.5 rounded-full border border-wf-medium/30 self-start md:self-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-wf-light p-1.5 rounded-full border border-wf-medium/30 self-start md:self-auto shrink-0">
           {filters.map((f) => (
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 activeFilter === f
                   ? 'bg-wf-darkest text-wf-white shadow-sm'
                   : 'text-wf-dark hover:text-wf-darkest hover:bg-wf-medium/20'
@@ -128,11 +123,11 @@ export default function GuruStaf() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredData.map((person) => (
           <div 
             key={person.id} 
-            className="bg-wf-light rounded-[28px] border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-shadow group flex flex-col"
+            className="bg-wf-light rounded-2xl sm:rounded-[28px] border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-shadow group flex flex-col"
           >
             <div className="w-full aspect-[3/4] bg-wf-dark flex items-center justify-center relative overflow-hidden">
               {person.photoUrl ? (
@@ -143,7 +138,7 @@ export default function GuruStaf() {
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center text-wf-medium/30 z-10">
-                  <User size={64} className="mb-3" />
+                  <User size={56} className="mb-2" />
                   <span className="text-[10px] font-bold uppercase tracking-widest">
                     Slot Foto 3:4
                   </span>
@@ -152,7 +147,7 @@ export default function GuruStaf() {
               <div className="absolute inset-0 bg-gradient-to-t from-wf-darkest/60 via-transparent to-transparent opacity-50" />
             </div>
 
-            <div className="p-6 flex flex-col flex-grow justify-between bg-wf-white">
+            <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-wf-white">
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-wf-blue uppercase tracking-wider flex items-center gap-1.5 mb-2">
                   {person.category === 'Guru' ? <GraduationCap size={12} /> : <Briefcase size={12} />}
@@ -166,15 +161,15 @@ export default function GuruStaf() {
                 </p>
               </div>
 
-              <div className="mt-5 space-y-2 pt-4 border-t border-wf-medium/20">
+              <div className="mt-4 sm:mt-5 space-y-1.5 sm:space-y-2 pt-3 sm:pt-4 border-t border-wf-medium/20">
                 <div className="flex items-center gap-2 text-wf-dark">
-                  <User size={14} className="opacity-70" />
-                  <span className="text-[11px] font-medium font-mono">
+                  <User size={13} className="opacity-70 shrink-0" />
+                  <span className="text-[11px] font-medium font-mono truncate">
                     NIP. {person.nip || '-'}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-wf-dark">
-                  <Mail size={14} className="opacity-70" />
+                  <Mail size={13} className="opacity-70 shrink-0" />
                   <span className="text-[11px] font-medium truncate">
                     {person.email}
                   </span>
@@ -188,7 +183,7 @@ export default function GuruStaf() {
 
       {filteredData.length === 0 && (
         <div className="py-20 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed">
-          <p className="text-wf-dark font-medium">Tidak ada data {activeFilter.toLowerCase()} yang ditemukan.</p>
+          <p className="text-wf-dark font-medium text-sm">Tidak ada data {activeFilter.toLowerCase()} yang ditemukan.</p>
         </div>
       )}
 

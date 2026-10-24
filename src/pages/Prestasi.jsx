@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Trophy, Medal, Star, Calendar, User, Search, Award, Filter, Globe } from 'lucide-react';
 
 export default function Prestasi() {
@@ -87,14 +87,13 @@ export default function Prestasi() {
       setTimeout(() => {
         setPrestasiData(dummyDatabase);
         setIsLoading(false);
-      }, 500);
+      }, 300);
     };
 
     fetchPrestasi();
   }, []);
 
   const kategoriFilters = ['Semua', 'Akademik', 'Olahraga', 'Seni', 'Institusi'];
-  
   const tingkatFilters = ['Semua', 'Internasional', 'Nasional', 'Provinsi', 'Kabupaten/Kota', 'Internal (Classmeet)'];
   
   const filteredPrestasi = prestasiData.filter(item => {
@@ -117,7 +116,7 @@ export default function Prestasi() {
   const getTingkatIcon = (tingkat) => {
     if (tingkat === 'Internasional') return <Globe size={12} />;
     return <Award size={12} />;
-  }
+  };
 
   if (isLoading) {
     return (
@@ -128,38 +127,38 @@ export default function Prestasi() {
   }
 
   return (
-    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-12 space-y-12 bg-wf-white text-wf-darkest">
+    <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12 pt-28 sm:pt-32 md:pt-36 pb-16 space-y-8 sm:space-y-12 bg-wf-white text-wf-darkest">
       
-      <div className="bg-wf-light rounded-[32px] border border-wf-medium/30 p-8 md:p-12 shadow-sm flex flex-col xl:flex-row xl:items-end justify-between gap-10">
+      <div className="bg-wf-light rounded-2xl sm:rounded-[32px] border border-wf-medium/30 p-6 sm:p-8 md:p-12 shadow-sm flex flex-col xl:flex-row xl:items-end justify-between gap-6 sm:gap-10">
         
-        <div className="space-y-3 max-w-2xl">
+        <div className="space-y-2.5 max-w-2xl">
           <span className="text-xs font-bold text-wf-blue uppercase tracking-widest block">
             Hall of Fame
           </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-wf-darkest tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-wf-darkest tracking-tight">
             Galeri Prestasi
           </h1>
-          <p className="text-wf-dark text-sm md:text-base leading-relaxed">
+          <p className="text-wf-dark text-xs sm:text-sm md:text-base leading-relaxed">
             Jejak langkah kebanggaan dan dedikasi. Temukan deretan pencapaian luar biasa yang berhasil diukir oleh para siswa dan institusi kami di berbagai tingkatan kompetisi.
           </p>
         </div>
 
-        <div className="flex flex-col gap-5 xl:items-end w-full xl:w-auto shrink-0 bg-wf-white p-5 md:p-6 rounded-3xl border border-wf-medium/30 shadow-xs">
-          <div className="flex items-center gap-2 mb-1 xl:hidden">
+        <div className="flex flex-col gap-4 sm:gap-5 xl:items-end w-full xl:w-auto shrink-0 bg-wf-white p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl border border-wf-medium/30 shadow-xs">
+          <div className="flex items-center gap-2 pb-1 border-b border-wf-medium/20 xl:hidden">
             <Filter size={16} className="text-wf-blue" />
-            <span className="font-bold text-sm text-wf-darkest">Saring Prestasi</span>
+            <span className="font-bold text-xs sm:text-sm text-wf-darkest">Saring Prestasi</span>
           </div>
 
-          <div className="space-y-2 xl:text-right w-full">
-            <span className="text-[10px] font-bold text-wf-dark uppercase tracking-widest block px-2 xl:px-0">
+          <div className="space-y-1.5 sm:space-y-2 xl:text-right w-full">
+            <span className="text-[10px] font-bold text-wf-dark uppercase tracking-widest block px-1 xl:px-0">
               Kategori Lomba
             </span>
-            <div className="flex flex-wrap items-center gap-2 bg-wf-light p-1.5 rounded-2xl md:rounded-full border border-wf-medium/30 justify-start xl:justify-end">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-wf-light p-1.5 rounded-2xl md:rounded-full border border-wf-medium/30 justify-start xl:justify-end">
               {kategoriFilters.map((f) => (
                 <button
                   key={f}
                   onClick={() => setActiveKategori(f)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  className={`px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
                     activeKategori === f
                       ? 'bg-wf-darkest text-wf-white shadow-sm'
                       : 'text-wf-dark hover:text-wf-darkest hover:bg-wf-medium/20'
@@ -171,8 +170,8 @@ export default function Prestasi() {
             </div>
           </div>
 
-          <div className="space-y-2 xl:text-right w-full">
-            <span className="text-[10px] font-bold text-wf-dark uppercase tracking-widest block px-2 xl:px-0">
+          <div className="space-y-1.5 sm:space-y-2 xl:text-right w-full">
+            <span className="text-[10px] font-bold text-wf-dark uppercase tracking-widest block px-1 xl:px-0">
               Tingkat Kejuaraan
             </span>
             <div className="flex flex-wrap items-center gap-1.5 bg-wf-light p-1.5 rounded-2xl md:rounded-full border border-wf-medium/30 justify-start xl:justify-end">
@@ -180,7 +179,7 @@ export default function Prestasi() {
                 <button
                   key={f}
                   onClick={() => setActiveTingkat(f)}
-                  className={`px-3 py-1.5 rounded-full text-[11px] md:text-xs font-bold transition-all cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
                     activeTingkat === f
                       ? 'bg-wf-darkest text-wf-white shadow-sm'
                       : 'text-wf-dark hover:text-wf-darkest hover:bg-wf-medium/20'
@@ -195,11 +194,11 @@ export default function Prestasi() {
 
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredPrestasi.map((item) => (
           <div 
             key={item.id} 
-            className="bg-wf-light rounded-[28px] border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col relative"
+            className="bg-wf-light rounded-2xl sm:rounded-[28px] border border-wf-medium/30 overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col relative"
           >
             <div className="w-full aspect-[4/3] bg-wf-dark flex items-center justify-center relative overflow-hidden border-b border-wf-medium/20">
               {item.fotoUrl ? (
@@ -210,22 +209,22 @@ export default function Prestasi() {
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center text-wf-medium/40 z-10 bg-wf-white w-full h-full">
-                  <Trophy size={48} className="mb-3 text-wf-medium/50" />
+                  <Trophy size={40} className="mb-2 sm:mb-3 text-wf-medium/50" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-center px-4">
                     Slot Foto Dokumentasi
                   </span>
                 </div>
               )}
               
-              <div className={`absolute top-4 right-4 px-3 py-1.5 rounded-lg border text-[10px] font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 z-20 ${getTingkatStyle(item.tingkat)}`}>
+              <div className={`absolute top-3.5 right-3.5 px-2.5 py-1 rounded-lg border text-[10px] font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 z-20 ${getTingkatStyle(item.tingkat)}`}>
                 {getTingkatIcon(item.tingkat)}
                 {item.tingkat}
               </div>
             </div>
 
-            <div className="p-6 md:p-8 flex flex-col flex-grow bg-wf-white">
+            <div className="p-5 sm:p-6 md:p-8 flex flex-col flex-grow bg-wf-white">
               
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-wf-blue bg-wf-blue/10 px-2.5 py-1 rounded border border-wf-blue/20 uppercase tracking-wider">
                   {item.kategori === 'Akademik' ? <Star size={10} /> : <Medal size={10} />}
                   {item.kategori}
@@ -236,15 +235,15 @@ export default function Prestasi() {
                 </span>
               </div>
 
-              <h3 className={`font-bold text-lg leading-snug mb-3 ${item.tingkat === 'Internal (Classmeet)' ? 'text-wf-darkest/80' : 'text-wf-darkest'}`}>
+              <h3 className={`font-bold text-base sm:text-lg leading-snug mb-2 sm:mb-3 ${item.tingkat === 'Internal (Classmeet)' ? 'text-wf-darkest/80' : 'text-wf-darkest'}`}>
                 {item.judul}
               </h3>
-              <p className="text-wf-dark text-xs md:text-sm leading-relaxed mb-6 flex-grow">
+              <p className="text-wf-dark text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6 flex-grow">
                 {item.deskripsi}
               </p>
               
-              <div className="pt-4 border-t border-wf-medium/20 mt-auto flex items-start gap-2 text-sm text-wf-darkest">
-                <User size={16} className={`${item.tingkat === 'Internal (Classmeet)' ? 'text-wf-dark' : 'text-wf-blue'} shrink-0 mt-0.5`} />
+              <div className="pt-3.5 sm:pt-4 border-t border-wf-medium/20 mt-auto flex items-start gap-2 text-xs sm:text-sm text-wf-darkest">
+                <User size={15} className={`${item.tingkat === 'Internal (Classmeet)' ? 'text-wf-dark' : 'text-wf-blue'} shrink-0 mt-0.5`} />
                 <div>
                   <span className="block text-[10px] font-bold text-wf-dark uppercase tracking-wider mb-0.5">Diberikan Kepada</span>
                   <span className="font-bold">{item.peraih}</span>
@@ -259,7 +258,7 @@ export default function Prestasi() {
       {filteredPrestasi.length === 0 && (
         <div className="py-24 text-center bg-wf-light rounded-3xl border border-wf-medium/30 border-dashed flex flex-col items-center justify-center">
           <Search size={40} className="text-wf-medium/50 mb-3" />
-          <p className="text-wf-dark font-medium text-sm">
+          <p className="text-wf-dark font-medium text-xs sm:text-sm">
             Belum ada catatan prestasi untuk kategori <span className="font-bold">{activeKategori}</span> di tingkat <span className="font-bold">{activeTingkat}</span>.
           </p>
         </div>
